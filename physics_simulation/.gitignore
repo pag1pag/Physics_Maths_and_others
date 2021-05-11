@@ -1,1 +1,14 @@
+# VsCode
+.vscode
+
+# video
+*mp4
+
+# Python cache
 /__pycache__
+
+# virtual environment
+.env
+env
+.venv
+venv
