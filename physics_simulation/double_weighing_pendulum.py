@@ -234,5 +234,8 @@ if __name__ == "__main__":
     X0_1 = [np.radians(90), np.radians(89), 0, 0]
     X0_2 = [np.radians(90), np.radians(90), 0, 0]
     X0_3 = [np.radians(90), np.radians(91), 0, 0]
+    X0_4 = [np.radians(90), np.radians(92), 0, 0]
+    X0_5 = [np.radians(90), np.radians(93), 0, 0]
+    X0_6 = [np.radians(90), np.radians(94), 0, 0]
 
-    main(True, X0_1, X0_2, X0_3)
+    main(True, X0_1, X0_2, X0_3, X0_4, X0_5, X0_6)
