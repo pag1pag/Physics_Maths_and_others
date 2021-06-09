@@ -1,5 +1,6 @@
 import numpy as np
 
+
 def Euler(func, X0, t):
     """
     Euler integrator.
