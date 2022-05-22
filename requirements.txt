@@ -1,0 +1,7 @@
+autopep8
+matplotlib
+mypy
+pylint
+pytest
+numpy
+scipy

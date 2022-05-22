@@ -12,7 +12,7 @@ https://perso.univ-rennes1.fr/fabrice.mahe/ens/applications/chaleur1d/chaleur1d.
 import numpy as np
 from scipy import linalg
 import matplotlib.pyplot as plt
-import matplotlib.animation as animation
+from matplotlib import animation
 
 
 def left_boundary_condition(time):
@@ -30,15 +30,8 @@ def get_differential_matrix():
     Matrix of the thermal diffusion, taking into account right bondary conditions.
     A retrograde Euler scheme is used here.
     """
-    diff_matrix = np.zeros((N, N))
-    for i in range(N):
-        for j in range(N):
-            if i == j:
-                diff_matrix[i, j] = 2
-            if abs(i - j + 1) == 0:
-                diff_matrix[i, j] = -1
-            if abs(i - j - 1) == 0:
-                diff_matrix[i, j] = -1
+    diff_matrix = np.diag(np.full(N, 2.0), k=0)+np.diag(np.full(N-1, -1.0),
+                                                        k=1)+np.diag(np.full(N-1, -1.0), k=-1)
     diff_matrix[N - 1, N - 2] = -2  # right bondary conditions.
     return diff_matrix
 
@@ -70,7 +63,8 @@ def get_temperature():
     for j in range(1, M):
         temperature[:, j] = Inv.dot(F[:, j - 1])
         F[:, j] = temperature[:, j]
-        F[0, j] = temperature[0, j] + k * left_boundary_condition(j * (tau + 1))
+        F[0, j] = temperature[0, j] + k * \
+            left_boundary_condition(j * (tau + 1))
 
     return temperature
 
@@ -135,11 +129,11 @@ if __name__ == "__main__":
     # time discretisation
     tau = 1  # s (time step between two snapshots)
     M = 1000  # number of points
-    tc = 300  # s (duration of heating)
+    tc = 600  # s (duration of heating)
 
     # space discretisation
     L = 0.5  # cm (length of the rod)
-    N = 100  # how many subdivision of the rod
+    N = 4  # how many subdivision of the rod
     h = L / N  # cm (footstep)
 
     # D: thermal coefficient

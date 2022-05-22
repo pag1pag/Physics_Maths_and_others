@@ -7,8 +7,11 @@
 # Python cache
 /__pycache__
 
+# mypy cache
+.mypy*
+
 # virtual environment
-.env
-env
-.venv
-venv
+.env*
+env*
+.venv*
+venv*
